@@ -42,8 +42,28 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      # Change bucket name to reflect your website
-      BucketName: letscloud.ga
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+      BucketName: resumetatenda.ga
+      CorsConfiguration:
+        CorsRules:
+          - 
+            AllowedMethods: 
+              - GET
+              - HEAD
+            AllowedOrigins: 
+              - "*"
+            AllowedHeaders: 
+              - "*"
+
+  CloudFrontOAI:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties: 
+      CloudFrontOriginAccessIdentityConfig: 
+        Comment: !Sub "The OAI for the bucket: resumetatenda.ga"
+              
 
   S3BucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -59,3 +79,7 @@ Resources:
               - !Sub "arn:aws:s3:::${S3Bucket}/*"
             Principal:
               AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
+
+
+
+            
