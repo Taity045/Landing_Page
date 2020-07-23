@@ -3,12 +3,14 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   Serverless website
 
+  For tech5.ml
+
 Resources:
   CloudFrontOriginAccessIdentity:
     Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
     Properties:
       CloudFrontOriginAccessIdentityConfig:
-        Comment: 'Serverless website OA'
+        Comment: 'tech5.ml website OA'
 
   CloudfrontDistribution:
     Type: "AWS::CloudFront::Distribution"
@@ -23,10 +25,8 @@ Resources:
           - Id: s3-website
             DomainName: !GetAtt S3Bucket.DomainName
             S3OriginConfig:
-              # Restricting Bucket access through an origin access identity
               OriginAccessIdentity: 
                 Fn::Sub: 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}'
-        # To connect the CDN to the origins you need to specify behaviours
         DefaultCacheBehavior:
           # Compress resources automatically ( gzip )
           Compress: 'true'
@@ -46,7 +46,7 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
-      BucketName: resumetatenda.ga
+      BucketName: tech5.ml
       CorsConfiguration:
         CorsRules:
           - 
