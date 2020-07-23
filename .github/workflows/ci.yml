@@ -16,4 +16,4 @@ jobs:
       run: aws s3 sync ./ s3://tech5.ml/ --delete --exclude ".git*"
 
     - name: Invalidate CloudFront cache
-      run: aws cloudfront create-invalidation --distribution-id E8KVRESS325E0 --paths "/index.html"
+      run: aws cloudfront create-invalidation --distribution-id EXJQ09ZAWPVKX --paths "/index.html"
