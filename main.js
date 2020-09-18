@@ -16,7 +16,6 @@
    
 
 //Visitors counter
-
  fetch('https://ocpi5trgye.execute-api.us-east-1.amazonaws.com/Prod/index/')
    .then(res => res.json())
    .then(count => {
